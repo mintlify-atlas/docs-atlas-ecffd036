@@ -1,80 +1,117 @@
 ---
-title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+title: Quickstart
+description: Get started with Annie Mei in minutes by adding the bot to your Discord server and trying out basic commands.
 ---
 
-## Get started in three steps
+# Quickstart Guide
 
-Get your documentation site running locally and make your first customization.
+Get Annie Mei running in your Discord server in just a few minutes.
 
-### Step 1: Set up your local environment
-
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
+<Steps>
+  <Step title="Add the Bot to Discord">
+    To add Annie Mei to your Discord server, you'll need to create a bot application in the [Discord Developer Portal](https://discord.com/developers/applications).
     
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
+    1. Create a new application
+    2. Go to the "Bot" section and create a bot
+    3. Under "OAuth2" > "URL Generator", select the `bot` and `applications.commands` scopes
+    4. Select the required bot permissions (at minimum: Send Messages, Embed Links)
+    5. Copy the generated URL and open it in your browser to invite the bot to your server
     
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
-
-### Step 2: Deploy your changes
-
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
+    <Note>
+      You'll need "Manage Server" permissions on the Discord server to add bots.
+    </Note>
+  </Step>
+  
+  <Step title="Verify the Bot is Online">
+    Once added, check that Annie Mei appears online in your server's member list. The bot will automatically register its slash commands when it starts up.
     
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
+    You can verify this by typing `/` in any channel - you should see Annie Mei's commands in the autocomplete menu.
+  </Step>
+  
+  <Step title="Try Your First Command">
+    Let's test the bot with a simple health check:
+    
+    ```
+    /ping
+    ```
+    
+    The bot should respond with its latency, confirming it's working correctly.
+  </Step>
+  
+  <Step title="Look Up an Anime">
+    Now try searching for an anime:
+    
+    ```
+    /anime Attack on Titan
+    ```
+    
+    Annie Mei will return detailed information from AniList, including the title, description, rating, episode count, and more.
+    
+    <Note>
+      You can search by name or use an AniList ID for exact matches. Japanese kana is also supported!
+    </Note>
+  </Step>
+  
+  <Step title="Search for Manga">
+    Search for manga information:
+    
+    ```
+    /manga Chainsaw Man
+    ```
+    
+    You can also search using Japanese characters:
+    
+    ```
+    /manga きめつのやいば
+    ```
+  </Step>
+  
+  <Step title="Find Theme Songs">
+    Look up opening and ending theme songs for an anime with Spotify links:
+    
+    ```
+    /songs Demon Slayer
+    ```
+    
+    <Warning>
+      For anime with numeric titles, wrap the title in quotes to ensure proper parsing:
+      ```
+      /songs "86"
+      ```
+    </Warning>
+  </Step>
+  
+  <Step title="Link Your AniList Account (Optional)">
+    To display your personal scores when looking up anime and manga, link your AniList account:
+    
+    ```
+    /register
+    ```
+    
+    Follow the bot's instructions to authenticate with AniList. Once linked, your scores will automatically appear when you use `/anime` or `/manga` commands.
+  </Step>
+</Steps>
 
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
+## Available Commands
 
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
+Here's a quick reference of all available commands:
 
-### Step 3: Go live
+| Command | Description |
+|---------|-------------|
+| `/help` | Shows all available commands and usage information |
+| `/ping` | Bot health check - shows latency |
+| `/register` | Link your AniList account to display your scores |
+| `/anime <search>` | Look up anime by name or AniList ID |
+| `/manga <search>` | Look up manga by name or AniList ID |
+| `/songs <search>` | Find opening and ending theme songs for an anime |
 
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
+## Search Tips
 
-## Next steps
+- **Use AniList IDs** for exact matches when you know the specific ID
+- **Japanese kana is fully supported** - search in Japanese if you prefer
+- **Wrap numeric titles in quotes** to prevent parsing issues (e.g., `/songs "86"`)
+- **Partial matches work** - you don't need to type the full title
 
-Now that you have your docs running, explore these key features:
+## Next Steps
 
-<CardGroup cols={2}>
-
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
-
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
-
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
-
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
-
-</CardGroup>
-
-<Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
-</Note>
+Interested in self-hosting Annie Mei or contributing to development? Check out the [Installation Guide](/installation) for detailed setup instructions.
