@@ -176,15 +176,40 @@ To look up a user's hashed ID in Sentry logs:
 
 ## Server Configuration
 
-### HTTP Server Port
+### HTTP Health Check Server
 
-Annie Mei runs an HTTP health check server:
+Annie Mei runs an HTTP health check server on port 8080 (configurable via `SERVER_PORT`):
 
 ```bash
 SERVER_PORT=8080  # Default port
 ```
 
-The server provides health check endpoints for monitoring and load balancers.
+The server provides a `/healthz` endpoint that monitors the health of Redis and PostgreSQL connections:
+
+**Endpoint**: `GET /healthz`
+
+**Response (healthy)**:
+```json
+{
+  "status": "healthy",
+  "version": "2.5.3",
+  "services": {
+    "redis": "up",
+    "database": "up"
+  }
+}
+```
+
+**HTTP Status Codes**:
+- `200 OK` - All services healthy
+- `503 Service Unavailable` - One or more services down
+
+This endpoint is useful for:
+- Load balancer health checks
+- Monitoring and alerting systems
+- Verifying deployment success
+
+Defined in: `src/server.rs:14-61`
 
 ## Validation
 
